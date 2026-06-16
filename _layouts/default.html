@@ -74,6 +74,12 @@
                 {% unless seen_folders contains folder_key %}
                   {% assign seen_folders = seen_folders | append: folder_key %}
                   {% assign folder_index = "/" | append: folder | append: "/" %}
+                  {% assign folder_is_active = false %}
+                  {% assign page_parts = page.path | split: "/" %}
+                  {% assign page_folder = page_parts | first %}
+                  {% if page.url == folder_index or page_folder == folder %}
+                    {% assign folder_is_active = true %}
+                  {% endif %}
 
                   {% assign folder_label = folder | replace: "-", " " | capitalize %}
                   {% assign folder_id = "sidebar-folder-" | append: folder | slugify %}
@@ -83,9 +89,9 @@
                       <button
                         class="sidebar-nav__toggle"
                         type="button"
-                        aria-expanded="false"
+                        aria-expanded="{{ folder_is_active }}"
                         aria-controls="{{ folder_id }}"
-                        aria-label="Expand {{ folder_label }} pages"
+                        aria-label="{% if folder_is_active %}Collapse{% else %}Expand{% endif %} {{ folder_label }} pages"
                         data-sidebar-toggle
                       >
                         <span aria-hidden="true"></span>
@@ -97,7 +103,7 @@
                         {{ folder_label }}
                       </a>
                     </div>
-                    <div class="sidebar-nav__children" id="{{ folder_id }}" hidden>
+                    <div class="sidebar-nav__children" id="{{ folder_id }}"{% unless folder_is_active %} hidden{% endunless %}>
                       {% for child_doc in docs %}
                         {% assign child_parts = child_doc.path | split: "/" %}
                         {% assign child_folder = child_parts | first %}
