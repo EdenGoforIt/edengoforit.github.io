@@ -74,14 +74,29 @@
                   {% assign seen_folders = seen_folders | append: folder_key %}
                   {% assign folder_index = "/" | append: folder | append: "/" %}
 
+                  {% assign folder_label = folder | replace: "-", " " | capitalize %}
+                  {% assign folder_id = "sidebar-folder-" | append: folder | slugify %}
+
                   <div class="sidebar-nav__group">
-                    <a
-                      class="sidebar-nav__link{% if page.url == folder_index %} is-active{% endif %}"
-                      href="{{ folder_index | relative_url }}"
-                    >
-                      {{ folder | replace: "-", " " | capitalize }}
-                    </a>
-                    <div class="sidebar-nav__children">
+                    <div class="sidebar-nav__folder">
+                      <button
+                        class="sidebar-nav__toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="{{ folder_id }}"
+                        aria-label="Expand {{ folder_label }} pages"
+                        data-sidebar-toggle
+                      >
+                        <span aria-hidden="true"></span>
+                      </button>
+                      <a
+                        class="sidebar-nav__link sidebar-nav__link--folder{% if page.url == folder_index %} is-active{% endif %}"
+                        href="{{ folder_index | relative_url }}"
+                      >
+                        {{ folder_label }}
+                      </a>
+                    </div>
+                    <div class="sidebar-nav__children" id="{{ folder_id }}" hidden>
                       {% for child_doc in docs %}
                         {% assign child_parts = child_doc.path | split: "/" %}
                         {% assign child_folder = child_parts | first %}
@@ -154,5 +169,6 @@
     </footer>
     <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/sidebar.js' | relative_url }}"></script>
   </body>
 </html>
