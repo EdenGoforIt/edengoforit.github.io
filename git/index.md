@@ -89,6 +89,8 @@ Uploads local commits to GitHub.
 
 ## Git Articles
 
+- [Conventional Branch](./conventional-branch.html)
+- [Conventional Commit](./conventional-commit.html)
 - [Release Branch Strategy](./branch-strategy.html)
 
 ## GitHub Pages Notes
