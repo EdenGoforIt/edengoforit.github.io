@@ -10,6 +10,7 @@ Personal GitHub Pages blog and development encyclopedia.
 ## Development Encyclopedia
 
 - [Algorithm](./algorithm/)
+- [Architecture](./architecture/)
 - [Git Reference](./git/)
 
 ## About
