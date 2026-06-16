@@ -7,13 +7,25 @@
     <meta name="description" content="{{ page.description | default: site.description }}">
     <script>
       (function () {
-        try {
-          var savedTheme = localStorage.getItem("edengoforit-theme");
-          var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-          document.documentElement.setAttribute("data-theme", savedTheme || (prefersDark ? "dark" : "light"));
-        } catch (error) {
-          document.documentElement.setAttribute("data-theme", "light");
+        var storageKey = "edengoforit-theme";
+        var theme = "dark";
+
+        function readCookieTheme() {
+          var match = document.cookie.match(new RegExp("(^| )" + storageKey + "=([^;]+)"));
+          return match ? decodeURIComponent(match[2]) : null;
         }
+
+        try {
+          theme = localStorage.getItem(storageKey) || readCookieTheme() || theme;
+        } catch (error) {
+          theme = readCookieTheme() || theme;
+        }
+
+        if (theme !== "light" && theme !== "dark") {
+          theme = "dark";
+        }
+
+        document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
@@ -45,19 +57,17 @@
           </a>
 
           {% assign docs = site.pages | sort: "path" %}
-          {% assign current_folder = "" %}
-          {% for doc in docs %}
-            {% unless doc.url == "/" or doc.path contains "README" or doc.path contains "_layouts" or doc.path contains "assets/" %}
-              {% assign parts = doc.path | split: "/" %}
-              {% if parts.size > 1 %}
-                {% assign folder = parts[0] %}
-                {% if folder != current_folder %}
-                  {% unless current_folder == "" %}
-                      </div>
-                    </div>
-                  {% endunless %}
-
+          {% assign seen_folders = "" %}
+          {% for folder_doc in docs %}
+            {% unless folder_doc.url == "/" or folder_doc.path contains "README" or folder_doc.path contains "_layouts" or folder_doc.path contains "assets/" %}
+              {% assign folder_parts = folder_doc.path | split: "/" %}
+              {% if folder_parts.size > 1 %}
+                {% assign folder = folder_parts | first %}
+                {% assign folder_key = "|" | append: folder | append: "|" %}
+                {% unless seen_folders contains folder_key %}
+                  {% assign seen_folders = seen_folders | append: folder_key %}
                   {% assign folder_index = "/" | append: folder | append: "/" %}
+
                   <div class="sidebar-nav__group">
                     <a
                       class="sidebar-nav__link{% if page.url == folder_index %} is-active{% endif %}"
@@ -66,26 +76,28 @@
                       {{ folder | replace: "-", " " | capitalize }}
                     </a>
                     <div class="sidebar-nav__children">
-                  {% assign current_folder = folder %}
-                {% endif %}
-
-                {% unless doc.name == "index.md" or doc.name == "index.html" %}
-                  {% assign fallback_title = doc.name | split: "." | first | replace: "-", " " | capitalize %}
-                  <a
-                    class="sidebar-nav__link sidebar-nav__link--child{% if page.url == doc.url %} is-active{% endif %}"
-                    href="{{ doc.url | relative_url }}"
-                  >
-                    {{ doc.title | default: fallback_title }}
-                  </a>
+                      {% for child_doc in docs %}
+                        {% assign child_parts = child_doc.path | split: "/" %}
+                        {% assign child_folder = child_parts | first %}
+                        {% assign child_file = child_parts | last %}
+                        {% if child_parts.size > 1 and child_folder == folder %}
+                          {% unless child_file == "index.md" or child_file == "index.html" %}
+                            {% assign fallback_title = child_file | split: "." | first | replace: "-", " " | capitalize %}
+                            <a
+                              class="sidebar-nav__link sidebar-nav__link--child{% if page.url == child_doc.url %} is-active{% endif %}"
+                              href="{{ child_doc.url | relative_url }}"
+                            >
+                              {{ child_doc.title | default: fallback_title }}
+                            </a>
+                          {% endunless %}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
                 {% endunless %}
               {% endif %}
             {% endunless %}
           {% endfor %}
-
-          {% unless current_folder == "" %}
-              </div>
-            </div>
-          {% endunless %}
         </nav>
       </aside>
 

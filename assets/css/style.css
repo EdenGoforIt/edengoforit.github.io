@@ -75,7 +75,7 @@ a:hover {
 .site-header__inner,
 .site-footer__inner,
 .page {
-  width: min(100% - 32px, 1180px);
+  width: min(100% - 32px, 1680px);
   margin: 0 auto;
 }
 
@@ -136,7 +136,7 @@ a:hover {
 .page {
   padding: 44px 0 56px;
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
+  grid-template-columns: minmax(240px, 18vw) minmax(0, 1fr);
   align-items: start;
   gap: 28px;
 }
@@ -208,7 +208,8 @@ a:hover {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
-  padding: clamp(24px, 5vw, 56px);
+  padding: clamp(24px, 4vw, 64px);
+  width: 100%;
 }
 
 .content > :first-child {
@@ -244,11 +245,36 @@ h3 {
 p,
 ul,
 ol {
-  max-width: 70ch;
+  max-width: 82ch;
+}
+
+table,
+pre {
+  max-width: 100%;
 }
 
 li + li {
   margin-top: 0.25rem;
+}
+
+table {
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  width: max-content;
+}
+
+th,
+td {
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface-soft);
+  color: var(--text);
 }
 
 code {

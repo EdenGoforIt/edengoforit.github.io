@@ -2,11 +2,20 @@
   var storageKey = "edengoforit-theme";
   var root = document.documentElement;
 
+  function readCookieTheme() {
+    var match = document.cookie.match(new RegExp("(^| )" + storageKey + "=([^;]+)"));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function saveCookieTheme(theme) {
+    document.cookie = storageKey + "=" + encodeURIComponent(theme) + "; path=/; max-age=31536000; SameSite=Lax";
+  }
+
   function readSavedTheme() {
     try {
-      return localStorage.getItem(storageKey);
+      return localStorage.getItem(storageKey) || readCookieTheme();
     } catch (error) {
-      return null;
+      return readCookieTheme();
     }
   }
 
@@ -14,8 +23,9 @@
     try {
       localStorage.setItem(storageKey, theme);
     } catch (error) {
-      return;
     }
+
+    saveCookieTheme(theme);
   }
 
   function getPreferredTheme() {
@@ -24,11 +34,7 @@
       return savedTheme;
     }
 
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-
-    return "light";
+    return "dark";
   }
 
   function setTheme(theme) {
