@@ -90,17 +90,64 @@ Common mistakes, confusing parts, or debugging notes.
 
 ## Local Development
 
-This repository is intended for GitHub Pages. If the site later uses a static site generator, add setup and run commands here.
+This repository is a GitHub Pages site built with Jekyll.
 
-Example:
+### Run Locally With Docker Compose
 
-```sh
-# install dependencies
-npm install
+Ruby and Jekyll do not need to be installed directly on the machine. Docker Compose runs the site using `compose.yaml`.
 
-# run local development server
-npm run dev
+Start Docker Desktop first, then run:
+
+```powershell
+docker compose up
 ```
+
+Open the site at:
+
+```text
+http://localhost:4000/
+```
+
+### Run In The Background
+
+```powershell
+docker compose up -d
+```
+
+### Stop The Local Server
+
+```powershell
+docker compose down
+```
+
+### Restart
+
+```powershell
+docker compose restart
+```
+
+### View Logs
+
+```powershell
+docker compose logs -f
+```
+
+### Build Only
+
+Use this when you only want to verify the Jekyll build:
+
+```powershell
+docker compose run --rm site bundle exec jekyll build
+```
+
+### Clean Generated Files
+
+```powershell
+docker compose down
+Remove-Item -Recurse -Force _site, .jekyll-cache -ErrorAction SilentlyContinue
+```
+
+Note: the first run may take a little longer while gems are installed. After that, gems are cached in the `bundle-cache` Docker volume.
 
 ## Ideas To Add Later
 
