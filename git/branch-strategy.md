@@ -1,3 +1,8 @@
+---
+title: Release Branch Strategy
+description: A practical release branching model using feature, release, and hotfix branches.
+---
+
 # Release Branch Strategy
 
 ## Introduction

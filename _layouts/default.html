@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/git/' | relative_url }}">Git</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <aside class="sidebar" aria-label="Development encyclopedia navigation">
+        <div class="sidebar__title">Encyclopedia</div>
+        <nav class="sidebar-nav">
+          <a
+            class="sidebar-nav__link{% if page.url == '/' %} is-active{% endif %}"
+            href="{{ '/' | relative_url }}"
+          >
+            Home
+          </a>
+
+          {% assign docs = site.pages | sort: "path" %}
+          {% assign current_folder = "" %}
+          {% for doc in docs %}
+            {% unless doc.url == "/" or doc.path contains "README" or doc.path contains "_layouts" or doc.path contains "assets/" %}
+              {% assign parts = doc.path | split: "/" %}
+              {% if parts.size > 1 %}
+                {% assign folder = parts[0] %}
+                {% if folder != current_folder %}
+                  {% unless current_folder == "" %}
+                      </div>
+                    </div>
+                  {% endunless %}
+
+                  {% assign folder_index = "/" | append: folder | append: "/" %}
+                  <div class="sidebar-nav__group">
+                    <a
+                      class="sidebar-nav__link{% if page.url == folder_index %} is-active{% endif %}"
+                      href="{{ folder_index | relative_url }}"
+                    >
+                      {{ folder | replace: "-", " " | capitalize }}
+                    </a>
+                    <div class="sidebar-nav__children">
+                  {% assign current_folder = folder %}
+                {% endif %}
+
+                {% unless doc.name == "index.md" or doc.name == "index.html" %}
+                  {% assign fallback_title = doc.name | split: "." | first | replace: "-", " " | capitalize %}
+                  <a
+                    class="sidebar-nav__link sidebar-nav__link--child{% if page.url == doc.url %} is-active{% endif %}"
+                    href="{{ doc.url | relative_url }}"
+                  >
+                    {{ doc.title | default: fallback_title }}
+                  </a>
+                {% endunless %}
+              {% endif %}
+            {% endunless %}
+          {% endfor %}
+
+          {% unless current_folder == "" %}
+              </div>
+            </div>
+          {% endunless %}
+        </nav>
+      </aside>
+
+      <article class="content">
+        {{ content }}
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <span>{{ site.description }}</span>
+      </div>
+    </footer>
+  </body>
+</html>

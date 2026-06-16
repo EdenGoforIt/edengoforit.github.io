@@ -1,3 +1,8 @@
+---
+title: Git Reference
+description: Practical Git commands and notes for development.
+---
+
 # Git Reference
 
 Git is a version control system used to track changes, collaborate with others, and keep project history organized.
@@ -81,6 +86,10 @@ git push
 ```
 
 Uploads local commits to GitHub.
+
+## Git Articles
+
+- [Release Branch Strategy](./branch-strategy.html)
 
 ## GitHub Pages Notes
 

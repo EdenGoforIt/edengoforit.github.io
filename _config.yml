@@ -1,0 +1,12 @@
+title: Eden Go For It
+description: Personal development encyclopedia and GitHub Pages blog.
+url: "https://edengoforit.github.io"
+
+markdown: kramdown
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
