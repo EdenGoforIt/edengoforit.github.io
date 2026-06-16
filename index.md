@@ -9,6 +9,7 @@ Personal GitHub Pages blog and development encyclopedia.
 
 ## Development Encyclopedia
 
+- [Algorithm](./algorithm/)
 - [Git Reference](./git/)
 
 ## About
