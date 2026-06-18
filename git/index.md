@@ -71,6 +71,48 @@ git log --oneline
 
 Shows a short list of previous commits.
 
+### Graph Commands
+
+```sh
+git log --oneline --graph --decorate --all
+```
+
+Shows commit history as a graph across all branches.
+
+```sh
+git log --oneline --graph --decorate --all --boundary
+```
+
+Shows where history diverges, including boundary commits.
+
+```sh
+git log --graph --decorate --all -p
+```
+
+Shows the graph with patch details for each commit.
+
+### Fix Local And Remote Differences
+
+Use these commands when `git pull` shows an empty commit or the local branch and remote branch have different histories.
+
+#### Reset Completely To The Remote Branch
+
+```sh
+git fetch origin
+git reset --hard origin/<branch>
+```
+
+Resets the local branch to match the remote branch exactly. This discards local commits and uncommitted changes.
+
+#### Rebase Local Branch From Remote
+
+```sh
+git fetch origin
+git rebase origin/<branch>
+```
+
+Keeps local commits, but replays them on top of the latest remote branch.
+
 ### Pull Latest Changes
 
 ```sh
