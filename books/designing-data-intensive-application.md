@@ -1,3 +1,8 @@
+---
+title: Designing Data-Intensive Applications
+description: Notes on trade-offs in data systems architecture.
+---
+
 # Trade-offs in data systems architecture
 
 ## Overview

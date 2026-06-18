@@ -11,6 +11,7 @@ Personal GitHub Pages blog and development encyclopedia.
 
 - [Algorithm](./algorithm/)
 - [Architecture](./architecture/)
+- [Books](./books/)
 - [.NET And C#](./dotnet/)
 - [Git Reference](./git/)
 
