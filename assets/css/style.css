@@ -361,6 +361,7 @@ pre {
   padding: 16px;
   overflow-x: auto;
   border: 1px solid var(--line);
+  position: relative;
 }
 
 pre code {
@@ -368,6 +369,59 @@ pre code {
   background: transparent;
   border: 0;
   padding: 0;
+}
+
+.code-copy {
+  align-items: center;
+  background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--code-text) 18%, transparent);
+  border-radius: 6px;
+  color: var(--code-text);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.78rem;
+  gap: 6px;
+  opacity: 0.78;
+  padding: 5px 8px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.code-copy:hover,
+.code-copy:focus-visible {
+  opacity: 1;
+}
+
+.code-copy__icon {
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  display: inline-block;
+  height: 13px;
+  position: relative;
+  width: 11px;
+}
+
+.code-copy__icon::before {
+  border: 1.5px solid currentColor;
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  border-right: 0;
+  content: "";
+  height: 11px;
+  left: -5px;
+  position: absolute;
+  top: -5px;
+  width: 9px;
+}
+
+.code-copy.is-copied {
+  color: var(--accent-strong);
+}
+
+.code-copy.is-error {
+  color: #fca5a5;
 }
 
 .site-footer {
