@@ -98,6 +98,7 @@ Use these commands when `git pull` shows an empty commit or the local branch and
 #### Reset Completely To The Remote Branch
 
 ```sh
+git checkout <branch>
 git fetch origin
 git reset --hard origin/<branch>
 ```
