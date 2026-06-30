@@ -108,6 +108,7 @@ Resets the local branch to match the remote branch exactly. This discards local 
 #### Rebase Local Branch From Remote
 
 ```sh
+git checkout <branch>
 git fetch origin
 git rebase origin/<branch>
 ```
