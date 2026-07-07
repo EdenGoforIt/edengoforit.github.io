@@ -16,6 +16,7 @@ Software architecture is about choosing structures that make a system easier to 
 - [N-Tier Architecture](./n-tier.html)
 - [NoSQL Schema Design](./no-sql-schema.html)
 - [Onion Architecture](./onion.html)
+- [Ports and Adapters](./port-and-adapter.html)
 - [RESTful API Design](./rest-ful-api.html)
 - [Solution Architecture For .NET](./solution-architect-dot-net.html)
 
@@ -26,6 +27,7 @@ Software architecture is about choosing structures that make a system easier to 
 | Clean Architecture | Keeping business rules independent from frameworks and databases. |
 | Onion Architecture | Centering the domain model and pushing infrastructure outward. |
 | N-Tier Architecture | Separating presentation, business, and data access concerns. |
+| Ports and Adapters | Isolating the application core behind ports with replaceable adapters. |
 | Microservices | Splitting a larger system into independently deployable services. |
 | NoSQL Schema Design | Modeling data around query patterns and scale requirements. |
 | RESTful APIs | Designing resource-oriented HTTP APIs. |
