@@ -53,4 +53,26 @@ The OWASP Top 10 is an awareness document for the most critical web application 
 
 ## Information Security
 
-> [Back to Home](../)
+## Principles of information security
+
+Confidentiality, integrity availability (CIA)
+Authentication, authorization and accounting (AAA)
+Accounting: record keeping and tracing of agent activities on computer devices and networks
+
+## Threat Landscape
+
+To be a threat, the information must be relevant, actionable and contextual (some company might think not a threat)
+
+> Blue hat hacker -> ethical and hired third party to test the vulnerabilities
+> An attack vector is a method used by a bac actor to illegally access or inihibit a network
+
+## Main four categories
+
+Social engineering, malware, unauthorized access, system design failure.
+Social engineering - tricking other people to expose confidential information
+
+- Trojan attack - infect one computer which can be an entry point to the network to multistage attack.
+- Spearphsing - targeted phising attack
+- Birthday attack - The password is normally hashed in the db. Db has been hacked. With that hash the attacker can much easily find the password with fewer tries.
+- Attack vector: vulnerability, pathway, mechanism
+  > [Back to Home](../)
