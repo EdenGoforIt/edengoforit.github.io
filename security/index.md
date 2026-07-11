@@ -3,6 +3,8 @@ title: Security
 description: Application security notes and OWASP Top 10 reference.
 ---
 
+[Back to Home](../)
+
 # Security
 
 Security work is about reducing risk before a weakness becomes an incident. Use this page as a quick reference for common application security categories and the habits that reduce them.
@@ -11,18 +13,18 @@ Security work is about reducing risk before a weakness becomes an incident. Use 
 
 The OWASP Top 10 is an awareness document for the most critical web application security risks. The current released version is OWASP Top 10:2025.
 
-| Rank | Risk | What To Watch For |
-| --- | --- | --- |
-| A01 | Broken Access Control | Users can access data or actions they should not be allowed to use. |
-| A02 | Security Misconfiguration | Defaults, exposed diagnostics, permissive settings, or missing hardening create avoidable openings. |
-| A03 | Software Supply Chain Failures | Dependencies, build systems, packages, or third-party services introduce untrusted or vulnerable code. |
-| A04 | Cryptographic Failures | Sensitive data is exposed because encryption, hashing, key handling, or transport protection is weak. |
-| A05 | Injection | Untrusted input is interpreted as commands, queries, expressions, or code. |
-| A06 | Insecure Design | The system design misses abuse cases, trust boundaries, or security controls from the start. |
-| A07 | Authentication Failures | Login, session, credential, or identity flows can be bypassed or abused. |
-| A08 | Software or Data Integrity Failures | Code, updates, CI/CD pipelines, serialized data, or stored data can be tampered with. |
-| A09 | Security Logging and Alerting Failures | Attacks are hard to detect, investigate, or respond to because useful events are missing or ignored. |
-| A10 | Mishandling of Exceptional Conditions | Errors, edge cases, and unexpected states leak information or create unsafe behavior. |
+| Rank | Risk                                   | What To Watch For                                                                                      |
+| ---- | -------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| A01  | Broken Access Control                  | Users can access data or actions they should not be allowed to use.                                    |
+| A02  | Security Misconfiguration              | Defaults, exposed diagnostics, permissive settings, or missing hardening create avoidable openings.    |
+| A03  | Software Supply Chain Failures         | Dependencies, build systems, packages, or third-party services introduce untrusted or vulnerable code. |
+| A04  | Cryptographic Failures                 | Sensitive data is exposed because encryption, hashing, key handling, or transport protection is weak.  |
+| A05  | Injection                              | Untrusted input is interpreted as commands, queries, expressions, or code.                             |
+| A06  | Insecure Design                        | The system design misses abuse cases, trust boundaries, or security controls from the start.           |
+| A07  | Authentication Failures                | Login, session, credential, or identity flows can be bypassed or abused.                               |
+| A08  | Software or Data Integrity Failures    | Code, updates, CI/CD pipelines, serialized data, or stored data can be tampered with.                  |
+| A09  | Security Logging and Alerting Failures | Attacks are hard to detect, investigate, or respond to because useful events are missing or ignored.   |
+| A10  | Mishandling of Exceptional Conditions  | Errors, edge cases, and unexpected states leak information or create unsafe behavior.                  |
 
 ## Secure Coding Checklist
 
@@ -42,4 +44,13 @@ The OWASP Top 10 is an awareness document for the most critical web application 
 - [OWASP Top 10:2025](https://owasp.org/Top10/2025/)
 - [OWASP Top Ten Web Application Security Risks](https://owasp.org/www-project-top-ten/)
 
-[Back to Home](../)
+## Cyber security
+
+> A practice of protecting compute rnetworks, devices and information from damage, loss or unauthorized access
+> Categories: Infrastructure, applicaiton, network IoT, Cloud
+> Information security (InfoSec) is the proactice of protecting information
+> Information security contains cybersecurity
+
+## Information Security
+
+> [Back to Home](../)
